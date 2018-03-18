@@ -15,7 +15,7 @@ app.use(logger('dev'));
 
 app.get('/', (req, res) => res.render('index'))
 
-app.listen(3000, () => console.log("Listening on port 300"))
+app.listen(3000, () => console.log("Listening on port 3000"));
 
 // const express = require('express')
 // const app = express()
