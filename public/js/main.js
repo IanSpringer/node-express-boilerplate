@@ -10,11 +10,16 @@ const runTime = () => {
   let seconds = Math.floor(((difference % (1000 * 60)) / 1000))
   let millis = Math.floor((difference % 10))
   const html = `
-    <p class="timer__inner">${days} ${hours} ${minutes} ${seconds} ${millis}</p>
+    <div class="timer__inner">
+      <span>${days < 10 ? `0${days}` : days}</span>
+      <span> ${hours < 10 ? `0${hours}` : hours}</span>
+      <span> ${minutes < 10 ? `0${minutes}` : minutes}</span>
+      <span> ${seconds < 10 ? `0${seconds}` : seconds}</span>
+    </div>
   `
 
   entry.innerHTML = html;
 }
 
-
-setInterval(runTime, 100)
+// runTime()
+setInterval(runTime, 1000)
