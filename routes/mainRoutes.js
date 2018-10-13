@@ -2,26 +2,28 @@ const express = require('express');
 const router = express.Router();
 const moment = require('moment');
 const axios = require('axios');
-const key = process.env.API_KEY
+const CircularJSON = require('circular-json');
 
 
 router.get('/', (req, res) => {
-  const untilElection = moment("20181106", "YYYYMMDD").startOf('hour').fromNow().replace('in', '');
-  res.render('landing', {untilElection: untilElection})
+
+
+  res.render('landing', {})
 })
 
-router.get('/results', (req, res) => {
-  const url = 'https://www.googleapis.com/civicinfo/v2/voterinfo?' + key;
-  // axios.get('https://www.googleapis.com/civicinfo/v2/voterinfo?' + key)
-  //   .then(function (response) {
-  //     console.log('resulst are' + response)
-  //     res.json(response)
-  //   })
-  //   .catch(function (error) {
-  //     return (error);
-  // });
-  console.log(url)
-  res.send('fuck')
+
+
+router.get('/suck-rating', (req, res) => {
+  axios.get('https://projects.fivethirtyeight.com/trump-approval-ratings/polls.json')
+    .then(function (response) {
+      let latestResults = response.data[response.data.length - 1];
+      res.render('suck-rating', {
+        disapproval: latestResults.answers[1].pct
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 })
 
 

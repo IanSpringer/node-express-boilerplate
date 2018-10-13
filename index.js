@@ -6,7 +6,6 @@ const router = express.Router();
 const routes = require('./routes/mainRoutes');
 const path = require('path');
 const bodyParser = require('body-parser');
-require('dotenv').config()
 const key = process.env.API_KEY;
 
 //Configure view engine to render EJS templates
@@ -15,6 +14,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 app.use(logger('dev')) ;
+
 
 
 
